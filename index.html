@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MD. Ammar Ali Khandoker | AI-Powered Web Designer & Data Specialist</title>
+  <meta name="description" content="4.5+ years in Data, ERP & Admin | AI Prompt Engineering | Modern Web Design | Dhaka"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --bg: #0a0a15;
+      --card: rgba(20, 20, 40, 0.65);
+      --text: #e0e0ff;
+      --accent: #00c4ff;
+      --accent-glow: rgba(0, 196, 255, 0.25);
+      --border: rgba(0, 196, 255, 0.18);
+      --blur: blur(12px);
+    }
+    [data-theme="light"] {
+      --bg: #f0f4ff;
+      --card: rgba(255, 255, 255, 0.75);
+      --text: #0d1b44;
+      --accent: #0066cc;
+      --accent-glow: rgba(0, 102, 204, 0.18);
+      --border: rgba(0, 102, 204, 0.12);
+      --blur: blur(10px);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 0.4s ease;
+    }
+    header {
+      padding: 7rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
+    }
+    [data-theme="light"] header {
+      background: linear-gradient(135deg, #e0f2ff, #f0f8ff);
+    }
+    h1 {
+      font-size: 3.8rem;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1.2s ease-out;
+    }
+    h1.visible { opacity:1; transform:translateY(0); }
+    .tagline {
+      font-size: 1.7rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1.4s ease-out 0.3s;
+    }
+    .tagline.visible { opacity:1; transform:translateY(0); }
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 2.8rem;
+      flex-wrap: wrap;
+      margin: 2.8rem 0;
+    }
+    .stat {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 1s ease-out;
+    }
+    .stat.visible { opacity:1; transform:translateY(0); }
+    .stat strong {
+      font-size: 3.2rem;
+      color: var(--accent);
+      display: block;
+    }
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h2 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 3.5rem;
+      color: var(--accent);
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+    .about {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.25rem;
+    }
+    .timeline {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      top: 0; bottom: 0; left: 50%;
+    }
+    .exp-item {
+      position: relative;
+      width: 45%;
+      padding: 2rem;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      margin: 3.5rem 0;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.9s ease-out;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+    .exp-item.visible { opacity:1; transform:translateY(0); }
+    .exp-item:nth-child(odd) { left: 0; text-align: right; }
+    .exp-item:nth-child(even) { left: 55%; }
+    .exp-item:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 25px 60px var(--accent-glow);
+    }
+    .skills-grid, .certs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+    .skill-card, .cert-card {
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    .skill-card.visible, .cert-card.visible { opacity:1; transform:translateY(0); }
+    .skill-card:hover, .cert-card:hover {
+      transform: translateY(-14px) scale(1.06);
+      box-shadow: 0 20px 50px var(--accent-glow);
+      border-color: var(--accent);
+    }
+    .skill-card i { font-size: 3.2rem; color: var(--accent); margin-bottom: 1rem; }
+    .contact { text-align: center; }
+    .contact a {
+      color: var(--accent);
+      font-size: 1.5rem;
+      margin: 0 1.8rem;
+      text-decoration: none;
+      transition: all 0.4s;
+    }
+    .contact a:hover { transform: scale(1.25); }
+    .theme-toggle {
+      position: fixed;
+      top: 1.8rem;
+      right: 1.8rem;
+      background: var(--card);
+      backdrop-filter: var(--blur);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      z-index: 1000;
+      transition: all 0.4s;
+    }
+    .theme-toggle:hover { transform: rotate(360deg) scale(1.15); }
+    .whatsapp-float {
+      position: fixed;
+      bottom: 35px;
+      right: 35px;
+      background: #25D366;
+      color: white;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 2.4rem;
+      line-height: 70px;
+      box-shadow: 0 12px 35px rgba(37,213,102,0.45);
+      z-index: 1000;
+      transition: all 0.4s;
+    }
+    .whatsapp-float:hover { transform: scale(1.2); }
+    @media (max-width: 768px) {
+      .timeline::before { left: 35px; }
+      .exp-item { width: 82%; left: 0 !important; text-align: left !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+
+  <header>
+    <h1>MD. Ammar Ali Khandoker</h1>
+    <p class="tagline">AI Powered Web Designer & Data Specialist</p>
+    <div class="stats">
+      <div class="stat"><strong>4.5+</strong> Years</div>
+      <div class="stat"><strong>4</strong> Companies</div>
+      <div class="stat"><strong>62+</strong> Certs</div>
+      <div class="stat"><strong>100%</strong> Drive</div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about">
+      <p>Detail-oriented professional with 4.5+ years of experience in Data Entry, ERP Systems, Admin/HR Support, and Inventory Management. Passionate about using AI tools and modern web technologies to improve efficiency and accuracy. BSS in Social Science.</p>
+    </div>
+  </section>
+
+  <section id="experience" style="background: rgba(10,10,30,0.6);">
+    <h2>Experience</h2>
+    <div class="timeline">
+      <div class="exp-item">
+        <h3>Executive (Store Management)</h3>
+        <p><strong>Step Media Limited</strong> • 2025 – Present (1.5 Years)</p>
+        <p>Overseeing inventory, logistics, and store operations optimization.</p>
+      </div>
+      <div class="exp-item">
+        <h3>Junior Executive</h3>
+        <p><strong>RFL Electronics Limited</strong> • 1.1 Years</p>
+        <p>Managed HR & Admin functions, employee records, and internal communication.</p>
+      </div>
+      <div class="exp-item">
+        <h3>Computer Operator</h3>
+        <p><strong>Mahdeen Group</strong> • 0.8 Years</p>
+        <p>Accurate data entry and production finishing record management.</p>
+      </div>
+      <div class="exp-item">
+        <h3>Data Entry Operator</h3>
+        <p><strong>Chorka Apparels Limited</strong></p>
+        <p>Precise data handling and production record maintenance.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card"><i class="fas fa-code"></i><p>HTML / CSS</p></div>
+      <div class="skill-card"><i class="fas fa-paint-brush"></i><p>UI / UX</p></div>
+      <div class="skill-card"><i class="fab fa-canva"></i><p>Canva</p></div>
+      <div class="skill-card"><i class="fas fa-vector-square"></i><p>Figma</p></div>
+      <div class="skill-card"><i class="fab fa-wordpress"></i><p>WordPress</p></div>
+      <div class="skill-card"><i class="fas fa-brain"></i><p>Prompt Engineering</p></div>
+      <div class="skill-card"><i class="fas fa-database"></i><p>ERP & HRIS</p></div>
+      <div class="skill-card"><i class="fas fa-keyboard"></i><p>Data Entry</p></div>
+      <div class="skill-card"><i class="fas fa-boxes"></i><p>Inventory Management</p></div>
+      <div class="skill-card"><i class="fas fa-users-cog"></i><p>Admin Management</p></div>
+    </div>
+  </section>
+
+  <section id="certificates" style="background: rgba(10,10,30,0.6);">
+    <h2>Key Certificates (62+)</h2>
+    <div class="certs">
+      <div class="cert-card">
+        <h3>Deep Dive into OpenAI Models</h3>
+        <p>Udemy • Jan 2026</p>
+      </div>
+      <div class="cert-card">
+        <h3>5-Day AI Agents Intensive Course with Google</h3>
+        <p>Kaggle • Dec 2025</p>
+      </div>
+      <div class="cert-card">
+        <h3>Excel Essentials for Workplace Productivity</h3>
+        <p>Passport to Earning Bangladesh • Dec 2025</p>
+      </div>
+      <div class="cert-card">
+        <h3>Critical Thinking in AI Era</h3>
+        <p>HP LIFE • Dec 2025</p>
+      </div>
+      <div class="cert-card">
+        <h3>Human Resources: Writing an Effective Job Description</h3>
+        <p>LinkedIn Learning • Oct 2025</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:3rem; font-size:1.25rem;">
+      …and many more in AI, Excel, HR, Design & Professional Development
+    </p>
+  </section>
+
+  <section id="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact">
+      <p><i class="fas fa-envelope"></i> <a href="mailto:ammar.khandoker@outlook.com">ammar.khandoker@outlook.com</a></p>
+      <p><i class="fas fa-phone"></i> <a href="tel:+8801716861353">+880 1716-861353</a></p>
+      <p><i class="fas fa-map-marker-alt"></i> Savar, Dhaka, Bangladesh</p>
+      <p style="margin-top:2.5rem; font-size:1.3rem;">
+        Open for new opportunities in AI-powered web design, data operations, inventory management & freelance projects.
+      </p>
+    </div>
+  </section>
+
+  <a href="https://wa.me/8801716861353?text=Hello%20Ammar%2C%20I%20saw%20your%20portfolio!" class="whatsapp-float">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script>
+    // Theme functions
+    function toggleTheme() {
+      try {
+        const html = document.documentElement;
+        const current = html.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : 'dark';
+
+        html.setAttribute('data-theme', next);
+
+        try {
+          localStorage.setItem('theme', next);
+        } catch (e) {
+          console.warn('localStorage write blocked', e);
+        }
+
+        updateIcon(next);
+      } catch (e) {
+        console.error('toggleTheme failed', e);
+      }
+    }
+
+    function updateIcon(theme) {
+      const icon = document.querySelector('.theme-toggle i');
+      if (!icon) return;
+
+      if (theme === 'light') {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    }
+
+    function initTheme() {
+      let theme = 'dark';
+      try {
+        theme = localStorage.getItem('theme') || 'dark';
+      } catch (e) {
+        console.warn('localStorage read blocked', e);
+      }
+
+      document.documentElement.setAttribute('data-theme', theme);
+      updateIcon(theme);
+    }
+
+    // Run theme init
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initTheme);
+    } else {
+      initTheme();
+    }
+
+    // Scroll reveal animations
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -60px 0px'
+      });
+
+      document.querySelectorAll('h1, .tagline, .stat, .exp-item, .skill-card, .cert-card')
+        .forEach(el => observer.observe(el));
+
+      // Force show elements already in view
+      setTimeout(() => {
+        document.querySelectorAll('h1, .tagline, .stat').forEach(el => {
+          if (el.getBoundingClientRect().top < window.innerHeight + 120) {
+            el.classList.add('visible');
+          }
+        });
+      }, 180);
+    } else {
+      // Fallback for very old browsers
+      document.querySelectorAll('h1, .tagline, .stat, .exp-item, .skill-card, .cert-card')
+        .forEach(el => el.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
