@@ -1,408 +1,238 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MD. Ammar Ali Khandoker | AI-Powered Web Designer & Data Specialist</title>
-  <meta name="description" content="4.5+ years in Data, ERP & Admin | AI Prompt Engineering | Modern Web Design | Dhaka"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-  <style>
-    :root {
-      --bg: #0a0a15;
-      --card: rgba(20, 20, 40, 0.65);
-      --text: #e0e0ff;
-      --accent: #00c4ff;
-      --accent-glow: rgba(0, 196, 255, 0.25);
-      --border: rgba(0, 196, 255, 0.18);
-      --blur: blur(12px);
-    }
-    [data-theme="light"] {
-      --bg: #f0f4ff;
-      --card: rgba(255, 255, 255, 0.75);
-      --text: #0d1b44;
-      --accent: #0066cc;
-      --accent-glow: rgba(0, 102, 204, 0.18);
-      --border: rgba(0, 102, 204, 0.12);
-      --blur: blur(10px);
-    }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-      transition: background 0.4s ease;
-    }
-    header {
-      padding: 7rem 2rem 4rem;
-      text-align: center;
-      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 100%);
-    }
-    [data-theme="light"] header {
-      background: linear-gradient(135deg, #e0f2ff, #f0f8ff);
-    }
-    h1 {
-      font-size: 3.8rem;
-      color: var(--accent);
-      margin-bottom: 0.6rem;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1.2s ease-out;
-    }
-    h1.visible { opacity:1; transform:translateY(0); }
-    .tagline {
-      font-size: 1.7rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 1.4s ease-out 0.3s;
-    }
-    .tagline.visible { opacity:1; transform:translateY(0); }
-    .stats {
-      display: flex;
-      justify-content: center;
-      gap: 2.8rem;
-      flex-wrap: wrap;
-      margin: 2.8rem 0;
-    }
-    .stat {
-      text-align: center;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 1s ease-out;
-    }
-    .stat.visible { opacity:1; transform:translateY(0); }
-    .stat strong {
-      font-size: 3.2rem;
-      color: var(--accent);
-      display: block;
-    }
-    section {
-      padding: 6rem 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    h2 {
-      text-align: center;
-      font-size: 3rem;
-      margin-bottom: 3.5rem;
-      color: var(--accent);
-      position: relative;
-    }
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90px;
-      height: 4px;
-      background: var(--accent);
-      border-radius: 2px;
-    }
-    .about {
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 1.25rem;
-    }
-    .timeline {
-      position: relative;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      width: 3px;
-      background: linear-gradient(to bottom, var(--accent), transparent);
-      top: 0; bottom: 0; left: 50%;
-    }
-    .exp-item {
-      position: relative;
-      width: 45%;
-      padding: 2rem;
-      background: var(--card);
-      backdrop-filter: var(--blur);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      margin: 3.5rem 0;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: all 0.9s ease-out;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-    }
-    .exp-item.visible { opacity:1; transform:translateY(0); }
-    .exp-item:nth-child(odd) { left: 0; text-align: right; }
-    .exp-item:nth-child(even) { left: 55%; }
-    .exp-item:hover {
-      transform: translateY(-12px) scale(1.03);
-      box-shadow: 0 25px 60px var(--accent-glow);
-    }
-    .skills-grid, .certs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-    }
-    .skill-card, .cert-card {
-      background: var(--card);
-      backdrop-filter: var(--blur);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 2rem 1.5rem;
-      text-align: center;
-      transition: all 0.5s ease;
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    .skill-card.visible, .cert-card.visible { opacity:1; transform:translateY(0); }
-    .skill-card:hover, .cert-card:hover {
-      transform: translateY(-14px) scale(1.06);
-      box-shadow: 0 20px 50px var(--accent-glow);
-      border-color: var(--accent);
-    }
-    .skill-card i { font-size: 3.2rem; color: var(--accent); margin-bottom: 1rem; }
-    .contact { text-align: center; }
-    .contact a {
-      color: var(--accent);
-      font-size: 1.5rem;
-      margin: 0 1.8rem;
-      text-decoration: none;
-      transition: all 0.4s;
-    }
-    .contact a:hover { transform: scale(1.25); }
-    .theme-toggle {
-      position: fixed;
-      top: 1.8rem;
-      right: 1.8rem;
-      background: var(--card);
-      backdrop-filter: var(--blur);
-      border: 1px solid var(--border);
-      color: var(--accent);
-      padding: 1rem;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 1.5rem;
-      z-index: 1000;
-      transition: all 0.4s;
-    }
-    .theme-toggle:hover { transform: rotate(360deg) scale(1.15); }
-    .whatsapp-float {
-      position: fixed;
-      bottom: 35px;
-      right: 35px;
-      background: #25D366;
-      color: white;
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      text-align: center;
-      font-size: 2.4rem;
-      line-height: 70px;
-      box-shadow: 0 12px 35px rgba(37,213,102,0.45);
-      z-index: 1000;
-      transition: all 0.4s;
-    }
-    .whatsapp-float:hover { transform: scale(1.2); }
-    @media (max-width: 768px) {
-      .timeline::before { left: 35px; }
-      .exp-item { width: 82%; left: 0 !important; text-align: left !important; }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171915">
+  <title>Md. Ammar Ali Khandoker — Data, MIS & Digital Operations</title>
+  <meta name="description" content="The personal portfolio of Md. Ammar Ali Khandoker — Data Entry, Excel reporting, MIS, HR operations and digital marketing.">
+  <meta name="keywords" content="Ammar Khandoker, Data Entry, Excel Reporting, MIS, HR Operations, Digital Marketing, Bangladesh">
+  <link rel="canonical" href="https://amber.pro.bd/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Md. Ammar Ali Khandoker — Professional Portfolio">
+  <meta property="og:description" content="Data Entry, Excel reporting, MIS, HR operations and digital marketing.">
+  <meta property="og:url" content="https://amber.pro.bd/">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://www.linkedin.com">
+  <link rel="stylesheet" href="/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Md. Ammar Ali Khandoker",
+    "url": "https://amber.pro.bd/",
+    "jobTitle": "Data Entry & MIS Reporting Professional",
+    "sameAs": [
+      "https://www.linkedin.com/in/mdamberalikhandoker",
+      "https://github.com/Ammar-Khandoker-BD"
+    ]
+  }
+  </script>
+  <script src="/script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="reading-progress" aria-hidden="true"><span id="progress-bar"></span></div>
 
-  <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
-
-  <header>
-    <h1>MD. Ammar Ali Khandoker</h1>
-    <p class="tagline">AI Powered Web Designer & Data Specialist</p>
-    <div class="stats">
-      <div class="stat"><strong>4.5+</strong> Years</div>
-      <div class="stat"><strong>4</strong> Companies</div>
-      <div class="stat"><strong>62+</strong> Certs</div>
-      <div class="stat"><strong>100%</strong> Drive</div>
-    </div>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Amber home">
+      <span class="brand-mark">A<span>.</span></span>
+      <span class="brand-name">AMBER<span>.PRO.BD</span></span>
+    </a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+      <span></span><span></span>
+    </button>
+    <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#expertise">Expertise</a>
+      <a href="#journey">Experience</a>
+      <a href="#contact" class="nav-contact">Let's connect <span aria-hidden="true">↗</span></a>
+    </nav>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about">
-      <p>Detail-oriented professional with 4.5+ years of experience in Data Entry, ERP Systems, Admin/HR Support, and Inventory Management. Passionate about using AI tools and modern web technologies to improve efficiency and accuracy. BSS in Social Science.</p>
-    </div>
-  </section>
-
-  <section id="experience" style="background: rgba(10,10,30,0.6);">
-    <h2>Experience</h2>
-    <div class="timeline">
-      <div class="exp-item">
-        <h3>Executive (Store Management)</h3>
-        <p><strong>Step Media Limited</strong> • 2025 – Present (1.5 Years)</p>
-        <p>Overseeing inventory, logistics, and store operations optimization.</p>
+  <main id="main">
+    <section class="hero section-wrap" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> PERSONAL PORTFOLIO <span class="eyebrow-line"></span> BANGLADESH</p>
+        <h1>Making data<br>work <em>smarter.</em></h1>
+        <p class="hero-lead">I'm <strong>Md. Ammar Ali Khandoker</strong> — a detail-focused professional working across data operations, Excel reporting, MIS and HR support.</p>
+        <div class="hero-actions">
+          <a class="button button-dark" href="#contact">Let's talk <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="#expertise">Explore my work <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-meta">
+          <span><i class="status-dot"></i> Open to meaningful opportunities</span>
+          <span class="meta-divider">/</span>
+          <span>Data · People · Process</span>
+        </div>
       </div>
-      <div class="exp-item">
-        <h3>Junior Executive</h3>
-        <p><strong>RFL Electronics Limited</strong> • 1.1 Years</p>
-        <p>Managed HR & Admin functions, employee records, and internal communication.</p>
+      <div class="hero-art" aria-label="A monogram representing Ammar Khandoker">
+        <div class="art-orbit orbit-one"></div>
+        <div class="art-orbit orbit-two"></div>
+        <div class="art-spark spark-one">✳</div>
+        <div class="art-spark spark-two">✦</div>
+        <div class="art-card">
+          <span class="art-card-label">THE PERSON BEHIND THE PROCESS</span>
+          <div class="monogram">AK<span>.</span></div>
+          <div class="art-card-rule"></div>
+          <div class="art-card-bottom">
+            <span>AMMAR KHANDOKER</span>
+            <span>EST. IN PROGRESS</span>
+          </div>
+        </div>
+        <div class="floating-note note-top"><span class="note-icon">↗</span><span>Clear reports.<br>Better decisions.</span></div>
+        <div class="floating-note note-bottom"><span class="note-icon">✓</span><span>Accuracy in<br>every detail.</span></div>
+        <div class="art-caption">A practical mindset<br>with a creative edge.</div>
       </div>
-      <div class="exp-item">
-        <h3>Computer Operator</h3>
-        <p><strong>Mahdeen Group</strong> • 0.8 Years</p>
-        <p>Accurate data entry and production finishing record management.</p>
+      <div class="hero-bottom">
+        <span>SCROLL TO EXPLORE</span>
+        <span class="scroll-line"></span>
+        <span>01 — 04</span>
       </div>
-      <div class="exp-item">
-        <h3>Data Entry Operator</h3>
-        <p><strong>Chorka Apparels Limited</strong></p>
-        <p>Precise data handling and production record maintenance.</p>
+    </section>
+
+    <section class="intro-band">
+      <div class="section-wrap intro-grid">
+        <p class="section-index">01 / A LITTLE ABOUT ME</p>
+        <div>
+          <h2>Good work starts with <em>clarity.</em></h2>
+          <p>I enjoy turning everyday operational information into something teams can understand and act on. My experience spans accurate data entry, structured Excel reports, employee records and digital work.</p>
+          <a class="underlined-link" href="#journey">A look at my journey <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="intro-aside">
+          <span class="aside-symbol">“</span>
+          <p>Be consistent. Be curious. Keep improving the process.</p>
+          <span class="aside-caption">MY WORKING PRINCIPLE</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="skills">
-    <h2>Technical Skills</h2>
-    <div class="skills-grid">
-      <div class="skill-card"><i class="fas fa-code"></i><p>HTML / CSS</p></div>
-      <div class="skill-card"><i class="fas fa-paint-brush"></i><p>UI / UX</p></div>
-      <div class="skill-card"><i class="fab fa-canva"></i><p>Canva</p></div>
-      <div class="skill-card"><i class="fas fa-vector-square"></i><p>Figma</p></div>
-      <div class="skill-card"><i class="fab fa-wordpress"></i><p>WordPress</p></div>
-      <div class="skill-card"><i class="fas fa-brain"></i><p>Prompt Engineering</p></div>
-      <div class="skill-card"><i class="fas fa-database"></i><p>ERP & HRIS</p></div>
-      <div class="skill-card"><i class="fas fa-keyboard"></i><p>Data Entry</p></div>
-      <div class="skill-card"><i class="fas fa-boxes"></i><p>Inventory Management</p></div>
-      <div class="skill-card"><i class="fas fa-users-cog"></i><p>Admin Management</p></div>
-    </div>
-  </section>
-
-  <section id="certificates" style="background: rgba(10,10,30,0.6);">
-    <h2>Key Certificates (62+)</h2>
-    <div class="certs">
-      <div class="cert-card">
-        <h3>Deep Dive into OpenAI Models</h3>
-        <p>Udemy • Jan 2026</p>
+    <section class="section-wrap expertise-section" id="expertise">
+      <div class="section-heading">
+        <div>
+          <p class="section-index">02 / WHAT I BRING</p>
+          <h2>Areas of <em>expertise.</em></h2>
+        </div>
+        <p class="heading-note">A mix of operational discipline, reporting skills and digital creativity.</p>
       </div>
-      <div class="cert-card">
-        <h3>5-Day AI Agents Intensive Course with Google</h3>
-        <p>Kaggle • Dec 2025</p>
+      <div class="expertise-grid">
+        <article class="expertise-card card-dark">
+          <div class="card-top"><span>01</span><span class="card-arrow">↗</span></div>
+          <div class="card-icon icon-amber">▤</div>
+          <h3>Excel & MIS<br>Reporting</h3>
+          <p>Organising records and building useful reports with Excel, lookup formulas and PivotTables.</p>
+          <div class="tag-list"><span>Excel</span><span>VLOOKUP</span><span>XLOOKUP</span><span>PivotTables</span></div>
+        </article>
+        <article class="expertise-card card-light">
+          <div class="card-top"><span>02</span><span class="card-arrow">↗</span></div>
+          <div class="card-icon icon-dark">⌘</div>
+          <h3>Data &<br>Operations</h3>
+          <p>Careful data entry, inventory information, documentation and repeatable day-to-day workflows.</p>
+          <div class="tag-list"><span>Data Entry</span><span>MIS</span><span>Inventory</span><span>ERP</span></div>
+        </article>
+        <article class="expertise-card card-light">
+          <div class="card-top"><span>03</span><span class="card-arrow">↗</span></div>
+          <div class="card-icon icon-dark">◎</div>
+          <h3>HR & People<br>Support</h3>
+          <p>Supporting employee information, HR documentation, attendance records and administrative tasks.</p>
+          <div class="tag-list"><span>HR Operations</span><span>HRIS</span><span>Documentation</span></div>
+        </article>
+        <article class="expertise-card card-amber">
+          <div class="card-top"><span>04</span><span class="card-arrow">↗</span></div>
+          <div class="card-icon icon-dark">✳</div>
+          <h3>Digital &<br>Creative Tools</h3>
+          <p>Using design, web and AI tools to support digital communication and practical projects.</p>
+          <div class="tag-list"><span>Canva</span><span>SEO</span><span>WordPress</span><span>AI Tools</span></div>
+        </article>
       </div>
-      <div class="cert-card">
-        <h3>Excel Essentials for Workplace Productivity</h3>
-        <p>Passport to Earning Bangladesh • Dec 2025</p>
+      <div class="skills-strip">
+        <span>ALSO WORKING WITH</span>
+        <div class="skill-chips"><span>MS Office</span><span>Oracle ERP</span><span>Google Workspace</span><span>Prompt Engineering</span><span>Digital Marketing</span></div>
       </div>
-      <div class="cert-card">
-        <h3>Critical Thinking in AI Era</h3>
-        <p>HP LIFE • Dec 2025</p>
+    </section>
+
+    <section class="journey-section" id="journey">
+      <div class="section-wrap">
+        <div class="section-heading journey-heading">
+          <div>
+            <p class="section-index">03 / THE JOURNEY SO FAR</p>
+            <h2>Experience built<br><em>step by step.</em></h2>
+          </div>
+          <p class="heading-note">Learning through real responsibilities, collaboration and continuous improvement.</p>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-date">JAN 2025 — PRESENT</div>
+            <div class="timeline-marker"><span></span></div>
+            <div class="timeline-content">
+              <p class="timeline-role">CURRENT ROLE</p>
+              <h3>Executive</h3>
+              <p class="timeline-company">Step Media Ltd.</p>
+              <p class="timeline-description">Focused on data entry, Excel-based reporting and maintaining accurate operational information.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">SEP 2023 — NOV 2024</div>
+            <div class="timeline-marker"><span></span></div>
+            <div class="timeline-content">
+              <p class="timeline-role">PREVIOUS EXPERIENCE</p>
+              <h3>Junior Executive</h3>
+              <p class="timeline-company">PRAN-RFL</p>
+              <p class="timeline-description">Supported HR activities, employee records and administrative documentation.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div class="timeline-date">AUG 2022 — JUL 2023</div>
+            <div class="timeline-marker"><span></span></div>
+            <div class="timeline-content">
+              <p class="timeline-role">EARLIER EXPERIENCE</p>
+              <h3>Data Entry Operator</h3>
+              <p class="timeline-company">Chorka Textile</p>
+              <p class="timeline-description">Worked with structured data, record updates and accuracy-focused documentation.</p>
+            </div>
+          </article>
+        </div>
       </div>
-      <div class="cert-card">
-        <h3>Human Resources: Writing an Effective Job Description</h3>
-        <p>LinkedIn Learning • Oct 2025</p>
+    </section>
+
+    <section class="section-wrap approach-section">
+      <div class="approach-card">
+        <div>
+          <p class="section-index">04 / HOW I APPROACH WORK</p>
+          <h2>Accuracy is a habit.<br><em>Improvement is a choice.</em></h2>
+        </div>
+        <div class="approach-points">
+          <div><span>01</span><p><strong>Understand first</strong> — clarify the information and the goal.</p></div>
+          <div><span>02</span><p><strong>Organise carefully</strong> — keep records structured and consistent.</p></div>
+          <div><span>03</span><p><strong>Report clearly</strong> — make information easier to use.</p></div>
+          <div><span>04</span><p><strong>Keep learning</strong> — improve tools, skills and workflows.</p></div>
+        </div>
       </div>
-    </div>
-    <p style="text-align:center; margin-top:3rem; font-size:1.25rem;">
-      …and many more in AI, Excel, HR, Design & Professional Development
-    </p>
-  </section>
+    </section>
 
-  <section id="contact">
-    <h2>Get In Touch</h2>
-    <div class="contact">
-      <p><i class="fas fa-envelope"></i> <a href="mailto:ammar.khandoker@outlook.com">ammar.khandoker@outlook.com</a></p>
-      <p><i class="fas fa-phone"></i> <a href="tel:+8801716861353">+880 1716-861353</a></p>
-      <p><i class="fas fa-map-marker-alt"></i> Savar, Dhaka, Bangladesh</p>
-      <p style="margin-top:2.5rem; font-size:1.3rem;">
-        Open for new opportunities in AI-powered web design, data operations, inventory management & freelance projects.
-      </p>
-    </div>
-  </section>
+    <section class="contact-section" id="contact">
+      <div class="section-wrap contact-inner">
+        <p class="section-index">05 / START A CONVERSATION</p>
+        <h2>Have a good project<br>or opportunity in <em>mind?</em></h2>
+        <p class="contact-copy">I'm always glad to connect with people working on better systems, useful data and meaningful digital projects.</p>
+        <div class="contact-actions">
+          <a class="button button-amber" href="https://www.linkedin.com/in/mdamberalikhandoker" target="_blank" rel="noopener noreferrer">Connect on LinkedIn <span aria-hidden="true">↗</span></a>
+          <a class="button button-outline" href="https://github.com/Ammar-Khandoker-BD" target="_blank" rel="noopener noreferrer">Explore GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="contact-bottom">
+          <span>BASED IN BANGLADESH</span>
+          <span>DATA · PEOPLE · PROCESS</span>
+          <span>AMBER.PRO.BD</span>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <a href="https://wa.me/8801716861353?text=Hello%20Ammar%2C%20I%20saw%20your%20portfolio!" class="whatsapp-float">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <script>
-    // Theme functions
-    function toggleTheme() {
-      try {
-        const html = document.documentElement;
-        const current = html.getAttribute('data-theme') || 'dark';
-        const next = current === 'dark' ? 'light' : 'dark';
-
-        html.setAttribute('data-theme', next);
-
-        try {
-          localStorage.setItem('theme', next);
-        } catch (e) {
-          console.warn('localStorage write blocked', e);
-        }
-
-        updateIcon(next);
-      } catch (e) {
-        console.error('toggleTheme failed', e);
-      }
-    }
-
-    function updateIcon(theme) {
-      const icon = document.querySelector('.theme-toggle i');
-      if (!icon) return;
-
-      if (theme === 'light') {
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
-      } else {
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
-      }
-    }
-
-    function initTheme() {
-      let theme = 'dark';
-      try {
-        theme = localStorage.getItem('theme') || 'dark';
-      } catch (e) {
-        console.warn('localStorage read blocked', e);
-      }
-
-      document.documentElement.setAttribute('data-theme', theme);
-      updateIcon(theme);
-    }
-
-    // Run theme init
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initTheme);
-    } else {
-      initTheme();
-    }
-
-    // Scroll reveal animations
-    if ('IntersectionObserver' in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -60px 0px'
-      });
-
-      document.querySelectorAll('h1, .tagline, .stat, .exp-item, .skill-card, .cert-card')
-        .forEach(el => observer.observe(el));
-
-      // Force show elements already in view
-      setTimeout(() => {
-        document.querySelectorAll('h1, .tagline, .stat').forEach(el => {
-          if (el.getBoundingClientRect().top < window.innerHeight + 120) {
-            el.classList.add('visible');
-          }
-        });
-      }, 180);
-    } else {
-      // Fallback for very old browsers
-      document.querySelectorAll('h1, .tagline, .stat, .exp-item, .skill-card, .cert-card')
-        .forEach(el => el.classList.add('visible'));
-    }
-  </script>
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#top"><span class="brand-mark">A<span>.</span></span><span class="brand-name">AMBER<span>.PRO.BD</span></span></a>
+    <p>Designed with intention. Built for clarity.</p>
+    <p>© <span id="current-year">2026</span> Md. Ammar Ali Khandoker</p>
+  </footer>
 </body>
 </html>
